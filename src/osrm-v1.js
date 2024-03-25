@@ -354,6 +354,8 @@
 				excl.push('point(' + latLng.lng + ' ' + latLng.lat + ')');
 			}
 
+			console.log("join aqui:", excl.join(','))
+
 			return this.options.serviceUrl + '/' + this.options.profile + '/' +
 				locs.join(';') + '?' +
 				(options.geometryOnly ? (options.simplifyGeometry ? '' : 'overview=full') : 'overview=false') +
