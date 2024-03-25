@@ -337,7 +337,8 @@
 				latLng,
 			    computeInstructions,
 			    computeAlternative = true,
-					excl = [];
+					excl = [],
+					exclStr = '';
 
 			for (var i = 0; i < waypoints.length; i++) {
 				wp = waypoints[i];
@@ -349,7 +350,6 @@
 			computeInstructions =
 				true;
 
-			exclStr = ''
 			if (this.options.exclude.length) {
 				for (var i = 0; i < this.options.exclude.length; i++) {
 					latLng = this.options.exclude[i];
