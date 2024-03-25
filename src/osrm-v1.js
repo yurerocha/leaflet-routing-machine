@@ -350,8 +350,7 @@
 				true;
 
 			for (var i = 0; i < this.options.exclude.length; i++) {
-				wp = this.options.exclude[i];
-				latLng = wp.latLng;
+				latLng = this.options.exclude[i];
 				excl.push('point(' + latLng.lng + ',' + latLng.lat + ')');
 			}
 
