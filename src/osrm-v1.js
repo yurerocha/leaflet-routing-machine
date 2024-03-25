@@ -351,7 +351,7 @@
 
 			for (var i = 0; i < this.options.exclude.length; i++) {
 				latLng = this.options.exclude[i];
-				excl.push('point(' + latLng.lng + ',' + latLng.lat + ')');
+				excl.push('point(' + latLng.lng + ' ' + latLng.lat + ')');
 			}
 
 			return this.options.serviceUrl + '/' + this.options.profile + '/' +
