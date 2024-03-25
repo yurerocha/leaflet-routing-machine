@@ -349,18 +349,20 @@
 			computeInstructions =
 				true;
 
-			for (var i = 0; i < this.options.exclude.length; i++) {
-				latLng = this.options.exclude[i];
-				excl.push('point(' + latLng.lng + ' ' + latLng.lat + ')');
+			exclStr = ''
+			if (this.options.exclude.length) {
+				for (var i = 0; i < this.options.exclude.length; i++) {
+					latLng = this.options.exclude[i];
+					excl.push('point(' + latLng.lng + ' ' + latLng.lat + ')');
+				}
+				exclStr = '&exclude=' + excl.join(',')
 			}
-
-			console.log("join aqui:", excl.join(','))
 
 			return this.options.serviceUrl + '/' + this.options.profile + '/' +
 				locs.join(';') + '?' +
 				(options.geometryOnly ? (options.simplifyGeometry ? '' : 'overview=full') : 'overview=false') +
 				'&alternatives=' + computeAlternative.toString() +
-				'&exclude=' + excl.join(',') +
+				exclStr +
 				'&steps=' + computeInstructions.toString() +
 				(this.options.useHints ? '&hints=' + hints.join(';') : '') +
 				(options.allowUTurns ? '&continue_straight=' + !options.allowUTurns : '');
