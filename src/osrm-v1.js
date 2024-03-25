@@ -336,7 +336,8 @@
 				wp,
 				latLng,
 			    computeInstructions,
-			    computeAlternative = true;
+			    computeAlternative = true,
+					excl = [];
 
 			for (var i = 0; i < waypoints.length; i++) {
 				wp = waypoints[i];
@@ -348,10 +349,17 @@
 			computeInstructions =
 				true;
 
+			for (var i = 0; i < this.options.exclude.length; i++) {
+				wp = this.options.exclude[i];
+				latLng = wp.latLng;
+				excl.push('point(' + latLng.lng + ',' + latLng.lat + ')');
+			}
+
 			return this.options.serviceUrl + '/' + this.options.profile + '/' +
 				locs.join(';') + '?' +
 				(options.geometryOnly ? (options.simplifyGeometry ? '' : 'overview=full') : 'overview=false') +
 				'&alternatives=' + computeAlternative.toString() +
+				'&exclude=' + excl.join(',') +
 				'&steps=' + computeInstructions.toString() +
 				(this.options.useHints ? '&hints=' + hints.join(';') : '') +
 				(options.allowUTurns ? '&continue_straight=' + !options.allowUTurns : '');
